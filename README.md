@@ -1,6 +1,17 @@
+# Node JS client library for IDOL OnDemand
+
+Basic library to help with calling IDOL OnDemand APIs [http://idolondemand.com](http://idolondemand.com)
+
+### Installation
+
+```
+npm install git+http://github.com/lemoogle/iod-node
+```
+
+### Start
 
 ```js
-var iod = require('iodneedle')
+var iod = require('iod-node')
 client= new iod.IODClient('http://api.idolondemand.com','apikey')
 ```
 
@@ -52,5 +63,3 @@ File posting is handled using the "file" parameter name which is used for all cu
 var data={'file':'test.txt'}
 client.call('analyzesentiment',data,callback)
 ```
-
-
