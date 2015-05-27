@@ -5,7 +5,7 @@ Basic library to help with calling IDOL OnDemand APIs [http://idolondemand.com](
 ### Installation
 
 ```
-npm install git+http://github.com/lemoogle/iod-node
+npm install git+<repourl>
 ```
 
 ### Start
