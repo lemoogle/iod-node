@@ -1,8 +1,23 @@
 # Node JS client library for IDOL OnDemand
+Basic library to help with calling IDOL OnDemand APIs [http://idolondemand.com](http://idolondemand.com).
 
-Basic library to help with calling IDOL OnDemand APIs [http://idolondemand.com](http://idolondemand.com)
+## What is IDOL OnDemand?
+IDOL OnDemand is a set of over 70 APIs for handling all sorts of unstructured data. Here are just some of our APIs' capabilities:
+* Speech to text
+* OCR
+* Text extraction
+* Indexing documents
+* Smart search
+* Language identification
+* Concept extraction
+* Sentiment analysis
+* Web crawlers
+* Machine learning
+
+For a full list of all the APIs and to try them out, check out https://www.idolondemand.com/developer/apis
 
 ### Installation
+To install, run the following command:
 ```
 npm install iod-node
 ```
@@ -63,6 +78,6 @@ client.call('analyzesentiment', data, callback, true)
 File posting is handled using the "file" parameter name which is used for all current file postings in IDOL OnDemand
 
 ```js
-var data={'file' : 'test.txt'}
+var data = {'file' : 'test.txt'}
 client.call('analyzesentiment', data, callback)
 ```
