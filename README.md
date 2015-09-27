@@ -53,7 +53,7 @@ Or, we can use the .on('data') hook to do the same thing.
 client.call('analyzesentiment',data).on('data',callback)
 ```
 
-The order of the arguments after the API name don't matter when passed, so all of these are the equivalent.
+The order of the arguments after the API name doesn't matter when passed, so all of these are the equivalent.
 
 ```js
 //1
