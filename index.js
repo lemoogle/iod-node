@@ -1,3 +1,3 @@
-var iod = require('./lib/iodneedle')
+var hod = require('./lib/hodneedle')
 
-module.exports=iod
+module.exports=hod

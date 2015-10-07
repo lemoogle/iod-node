@@ -1,8 +1,8 @@
-# Node JS client library for IDOL OnDemand
-Basic library to help with calling IDOL OnDemand APIs [http://idolondemand.com](http://idolondemand.com).
+# Node JS client library for Haven OnDemand
+Basic library to help with calling Haven OnDemand APIs [http://havenondemand.com](http://havenondemand.com).
 
-## What is IDOL OnDemand?
-IDOL OnDemand is a set of over 70 APIs for handling all sorts of unstructured data. Here are just some of our APIs' capabilities:
+## What is Haven OnDemand?
+Haven OnDemand is a set of over 70 APIs for handling all sorts of unstructured data. Here are just some of our APIs' capabilities:
 * Speech to text
 * OCR
 * Text extraction
@@ -14,23 +14,23 @@ IDOL OnDemand is a set of over 70 APIs for handling all sorts of unstructured da
 * Web crawlers
 * Machine learning
 
-For a full list of all the APIs and to try them out, check out https://www.idolondemand.com/developer/apis
+For a full list of all the APIs and to try them out, check out https://www.havenondemand.com/developer/apis
 
 ### Installation
 To install, run the following command:
 ```
-npm install iod-node
+npm install hod-node
 ```
 If you want to install the latest module directly from Github, use the following command:
 ```
-npm install git+https://github.com/HP-IDOL-OnDemand/iod-node
+npm install git+https://github.com/HP-Haven-OnDemand/hod-node
 ```
 
 ### Include it
 
 ```js
-var iod = require('iod-node')
-client = new iod.IODClient('http://api.idolondemand.com','apikey')
+var hod = require('hod-node')
+client = new hod.HODClient('http://api.havenondemand.com','apikey')
 ```
 
 ### Callbacks
@@ -67,7 +67,7 @@ client.call(data, callback, 'analyzesentiment')
 
 ### Async calls
 
-While node will mostly deal with things asynchronously, IDOL OnDemand offers server side asynchronous call method which should be used with large files and slow queries. Pass a boolean for the async parameter.
+While node will mostly deal with things asynchronously, Haven OnDemand offers server side asynchronous call method which should be used with large files and slow queries. Pass a boolean for the async parameter.
 
 ```js
 client.call('analyzesentiment', data, callback, true)
@@ -75,7 +75,7 @@ client.call('analyzesentiment', data, callback, true)
 
 ### Posting files
 
-File posting is handled using the "file" parameter name which is used for all current file postings in IDOL OnDemand
+File posting is handled using the "file" parameter name which is used for all current file postings in Haven OnDemand
 
 ```js
 var data = {'file' : 'test.txt'}
