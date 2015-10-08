@@ -1,3 +1,5 @@
+**Note:** formerly known as `iod-node`. For the older version, see the `iod` branch.
+
 # Node JS client library for Haven OnDemand
 Official client library to help with calling Haven OnDemand APIs [http://havenondemand.com](http://havenondemand.com).
 
