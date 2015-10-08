@@ -19,18 +19,18 @@ For a full list of all the APIs and to try them out, check out https://www.haven
 ### Installation
 To install, run the following command:
 ```
-npm install hod-node
+npm install havenondemand
 ```
 If you want to install the latest module directly from Github, use the following command:
 ```
-npm install git+https://github.com/HP-Haven-OnDemand/hod-node
+npm install git+https://github.com/HP-Haven-OnDemand/havenondemand-node
 ```
 
 ### Include it
 
 ```js
-var hod = require('hod-node')
-client = new hod.HODClient('http://api.havenondemand.com','apikey')
+var hod = require('havenondemand')
+client = new hod.HODClient('http://api.havenondemand.com', 'apikey')
 ```
 
 ### Callbacks
