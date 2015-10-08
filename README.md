@@ -1,5 +1,5 @@
 # Node JS client library for Haven OnDemand
-Basic library to help with calling Haven OnDemand APIs [http://havenondemand.com](http://havenondemand.com).
+Official client library to help with calling Haven OnDemand APIs [http://havenondemand.com](http://havenondemand.com).
 
 ## What is Haven OnDemand?
 Haven OnDemand is a set of over 70 APIs for handling all sorts of unstructured data. Here are just some of our APIs' capabilities:
@@ -27,11 +27,12 @@ npm install git+https://github.com/HP-Haven-OnDemand/havenondemand-node
 ```
 
 ### Include it
-
+*Note*: URL endpoint will change in the near future to `http://api.havenondemand.com`
 ```js
 var hod = require('havenondemand')
-client = new hod.HODClient('http://api.havenondemand.com', 'apikey')
+client = new hod.HODClient('http://api.idolondemand.com', 'API_KEY')
 ```
+You can find your API key [here](https://www.idolondemand.com/account/api-keys.html) after signing up.
 
 ### Callbacks
 
