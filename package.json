@@ -1,6 +1,6 @@
 {
   "name": "havenondemand",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Official Haven OnDemand NodeJS client",
   "main": "index.js",
   "dependencies": {
