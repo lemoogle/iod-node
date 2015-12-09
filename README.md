@@ -29,13 +29,13 @@ npm install git+https://github.com/HP-Haven-OnDemand/havenondemand-node
 ```
 
 ### Include it
-*Note*: URL endpoint will change in the near future to `http://api.havenondemand.com`
 ```js
 var hod = require('havenondemand')
-client = new hod.HODClient('http://api.idolondemand.com', 'API_KEY')
+client = new hod.HODClient(apikey, version)
 ```
-You can find your API key [here](https://www.idolondemand.com/account/api-keys.html) after signing up.
+You can find your API key [here](https://www.haveondemand.com/account/api-keys.html) after signing up.
 
+`version` is an optional parameter (defaults to `'v1'`) and can be either `'v1'` or `'v2'`.
 ### Callbacks
 
 ```js
