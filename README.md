@@ -84,3 +84,12 @@ File posting is handled using the "file" parameter name which is used for all cu
 var data = {'file' : 'test.txt'}
 client.call('analyzesentiment', data, callback)
 ```
+
+## Contributing
+We encourage you to contribute to this repo! Please send pull requests with modified and updated code.
+
+1. Fork it ( https://github.com/HPE-Haven-OnDemand/havenondemand-node/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
