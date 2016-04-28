@@ -4,7 +4,7 @@
 Official client library to help with calling Haven OnDemand APIs [http://havenondemand.com](http://havenondemand.com).
 
 ## What is Haven OnDemand?
-Haven OnDemand is a set of over 70 APIs for handling all sorts of unstructured data. Here are just some of our APIs' capabilities:
+Haven OnDemand is a set of over 60 APIs for handling all sorts of unstructured data. Here are just some of our APIs' capabilities:
 * Speech to text
 * OCR
 * Text extraction
@@ -70,10 +70,25 @@ client.call(data, callback, 'analyzesentiment')
 
 ### Async calls
 
-While node will mostly deal with things asynchronously, Haven OnDemand offers server side asynchronous call method which should be used with large files and slow queries. Pass a boolean for the async parameter.
-
+While node will mostly deals with processes asynchronously, Haven OnDemand offers server side asynchronous call methods which should be used with large files and slow queries. Pass a boolean for the async parameter. The API response will return back a job ID which is used to check the status or result of your API request.
 ```js
-client.call('analyzesentiment', data, callback, true)
+var jobID
+client.call('analyzesentiment', data, true, function(err, resp, body) {
+  jobID = resp.body.jobID
+  console.log(jobID)
+})
+```
+**(Recommended method)** To check the status of your API call, use the following code with the jobID from obtained from the async call above. This will tell you if it's still processing or if it's complete, and if so, it will return the result.
+```js
+client.getJobStatus(jobID, function(err, resp, body) {
+  console.log(resp.body)
+})
+```
+Or, to check the result of your API call, use the following code with the jobID obtained from the async call. *Note: This method may timeout if your async API call is still processing.*
+```js
+client.getJobResult(jobID, function(err, resp, body) {
+  console.log(resp.body)
+})
 ```
 
 ### Posting files
@@ -82,7 +97,9 @@ File posting is handled using the "file" parameter name which is used for all cu
 
 ```js
 var data = {'file' : 'test.txt'}
-client.call('analyzesentiment', data, callback)
+client.call('analyzesentiment', data, function(err, resp, body) {
+  console.log(resp.body)
+})
 ```
 
 ## Contributing
