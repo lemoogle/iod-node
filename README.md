@@ -30,14 +30,18 @@ npm install git+https://github.com/HP-Haven-OnDemand/havenondemand-node
 
 ### Include it
 ```js
-var hod = require('havenondemand')
-client = new hod.HODClient(apikey, version, proxy)
+var havenondemand = require('havenondemand')
+var client = new havenondemand.HODClient(apikey, version, proxy)
 ```
 You can find your API key [here](https://www.haveondemand.com/account/api-keys.html) after signing up.
 
 `version` is an optional parameter (defaults to `'v1'`) and can be either `'v1'` or `'v2'`.
 
-`proxy` is an optional parameter. Please set this if you're behind a firewall.
+`proxy` is an optional parameter. Please set this if you're behind a firewall. Here is an example of iniating the client if you're using a proxy:
+```js
+var havenondemand = require('havenondemand')
+var client = new havenondemand.HODClient('123456-asdf', 'v1', 'http://user:pass@proxy.server.com:3128')
+```
 ### Callbacks
 
 ```js
