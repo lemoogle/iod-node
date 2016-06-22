@@ -54,32 +54,41 @@ We can define our callbacks as functions and pass them as arguments
 
 ```js
 var data = {'text' : 'I like cats'}
-client.call('analyzesentiment', callback, data)
+client.post('analyzesentiment', callback, data)
 ```
 Or, we can use the .on('data') hook to do the same thing.
 
 ```js
-client.call('analyzesentiment',data).on('data',callback)
+client.post('analyzesentiment',data).on('data',callback)
 ```
 
 The order of the arguments after the API name doesn't matter when passed, so all of these are the equivalent.
 
 ```js
 //1
-client.call('analyzesentiment', data, callback)
+client.post('analyzesentiment', data, callback)
 //2
-client.call(data, 'analyzesentiment', callback)
+client.post(data, 'analyzesentiment', callback)
 //3
-client.call(data, callback, 'analyzesentiment')
+client.post(data, callback, 'analyzesentiment')
 ```
 
+### GET request
+APIs can also be accessed via a GET request.
+```js
+client.get('analyzesentiment', {'text': 'I love dogs'}, function(err, resp, body) {
+  if (!err) {
+    console.log(resp.body)
+  }
+})
+```
 
 ### Async calls
 
 While node will mostly deals with processes asynchronously, Haven OnDemand offers server side asynchronous call methods which should be used with large files and slow queries. Pass a boolean for the async parameter. The API response will return back a job ID which is used to check the status or result of your API request.
 ```js
 var jobID
-client.call('analyzesentiment', data, true, function(err, resp, body) {
+client.post('analyzesentiment', data, true, function(err, resp, body) {
   jobID = resp.body.jobID
   console.log(jobID)
 })
@@ -103,10 +112,45 @@ File posting is handled using the "file" parameter name which is used for all cu
 
 ```js
 var data = {'file' : 'test.txt'}
-client.call('analyzesentiment', data, function(err, resp, body) {
+client.post('analyzesentiment', data, function(err, resp, body) {
   console.log(resp.body)
 })
 ```
+
+### Batch jobs
+
+Haven OnDemand allows you to batch multiple API jobs in a single request using the Job API, for example, to analyze a batch of web pages, documents or social media messages where you need to analyze each text individually but want to be more efficient with your code, or where you want to execute multiple API calls on a single web page, document, or text. **Note: files are currently not supported in this wrapper for batch jobs.**
+
+```js
+var jobID
+var data = [
+  { "name": "analyzesentiment",
+     "version": "v1",
+     "params": {
+        'text': 'I love dogs'
+      }
+   },
+   { "name": "extractconcepts",
+      "version": "v1",
+      "params": {
+         "url": "http://en.wikipedia.org/wiki/United_Kingdom"
+       }
+    }
+ ]
+client.batchJob(data, function(err, resp, body) {
+  jobID = resp.body.jobID
+  console.log(jobID)
+})
+
+//
+// check result of async request with Status API after some time
+//
+
+client.getJobStatus(jobID, function(err, resp, body) {
+  console.log(resp.body)
+})
+```
+
 
 ## Contributing
 We encourage you to contribute to this repo! Please send pull requests with modified and updated code.
