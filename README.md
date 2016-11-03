@@ -113,9 +113,32 @@ File posting is handled using the "file" parameter name which is used for all cu
 ```js
 var data = {'file' : 'test.txt'}
 client.post('analyzesentiment', data, function(err, resp, body) {
-  console.log(resp.body)
+  if (err) {
+    console.log(err)
+  } else {
+    console.log(resp.body)
+  }
 })
 ```
+
+### Combinations
+
+Haven OnDemand allows to chain two ore more APIs together to create customizable, reusable services. These combinations enable one data input to have unlimited transformations and processing all from a single API call.
+
+```js
+var data =  { parameters: { name:"name_of_input", value: "value_of_input"} }
+client.post_combination('name_of_combination', data, function(err, resp, body) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log(resp.body)
+  }
+})
+```
+
+**Note: using local files and publicly accessible URLs is not supported by this wrapper**
+
+To find out more about combinations and how to create one, see [here](https://dev.havenondemand.com/combination/home).
 
 ### Batch jobs
 
