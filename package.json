@@ -1,17 +1,15 @@
 {
   "name": "havenondemand",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Official Haven OnDemand Node.js client",
   "main": "index.js",
-  "dependencies": {
-    "needle": "^0.7.10"
-  },
   "devDependencies": {},
   "scripts": {
     "test": "node test.js"
   },
   "author": "Haven OnDemand",
   "contributors": [
+    "Phong Vu <phong.vu@hpe.com>",
     "Tyler Nappy <tyler.nappy@hpe.com>",
     "Martin Zerbib"
   ],

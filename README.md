@@ -42,41 +42,28 @@ You can find your API key [here](https://www.haveondemand.com/account/api-keys.h
 var havenondemand = require('havenondemand')
 var client = new havenondemand.HODClient('123456-asdf', 'v1', 'http://user:pass@proxy.server.com:3128')
 ```
-### Callbacks
-
+### Callback
+We must define a callback function and pass it as an argument
 ```js
 var callback = function(err,resp,body){
   console.log(body)
 }
+var data = {'text' : 'I like cats'}
+client.post('analyzesentiment', data, false, callback)
 ```
 
-We can define our callbacks as functions and pass them as arguments
-
+The order of the arguments is strict. It must be in the following order:
+method("api_name", {params}, async=[true|false], callback_method)
 ```js
 var data = {'text' : 'I like cats'}
-client.post('analyzesentiment', callback, data)
-```
-Or, we can use the .on('data') hook to do the same thing.
-
-```js
-client.post('analyzesentiment',data).on('data',callback)
-```
-
-The order of the arguments after the API name doesn't matter when passed, so all of these are the equivalent.
-
-```js
-//1
-client.post('analyzesentiment', data, callback)
-//2
-client.post(data, 'analyzesentiment', callback)
-//3
-client.post(data, callback, 'analyzesentiment')
+client.post('analyzesentiment', data, false, callback)
 ```
 
 ### GET request
-APIs can also be accessed via a GET request.
+APIs can be accessed via a GET request.
 ```js
-client.get('analyzesentiment', {'text': 'I love dogs'}, function(err, resp, body) {
+var data = {'text' : 'I like cats'}
+client.get('analyzesentiment', data, false, function(err, resp, body) {
   if (!err) {
     console.log(resp.body)
   }
@@ -88,6 +75,7 @@ client.get('analyzesentiment', {'text': 'I love dogs'}, function(err, resp, body
 While node will mostly deals with processes asynchronously, Haven OnDemand offers server side asynchronous call methods which should be used with large files and slow queries. Pass a boolean for the async parameter. The API response will return back a job ID which is used to check the status or result of your API request.
 ```js
 var jobID
+var data = {'text': 'I love dogs'}
 client.post('analyzesentiment', data, true, function(err, resp, body) {
   jobID = resp.body.jobID
   console.log(jobID)
@@ -112,7 +100,7 @@ File posting is handled using the "file" parameter name which is used for all cu
 
 ```js
 var data = {'file' : 'test.txt'}
-client.post('analyzesentiment', data, function(err, resp, body) {
+client.post('analyzesentiment', data, false, function(err, resp, body) {
   if (err) {
     console.log(err)
   } else {
@@ -125,9 +113,10 @@ client.post('analyzesentiment', data, function(err, resp, body) {
 
 Haven OnDemand allows to chain two ore more APIs together to create customizable, reusable services. These combinations enable one data input to have unlimited transformations and processing all from a single API call.
 
+If you created a combination API name "sentimentanalysistoindex" which takes input as plain text. You can call the combination API from the code shown below:
 ```js
-var data =  { parameters: { name:"name_of_input", value: "value_of_input"} }
-client.post_combination('name_of_combination', data, function(err, resp, body) {
+var params = {text : "Haven OnDemand is awesome."};
+client.post_combination('sentimentanalysistoindex', params, false, function(err, resp, body) {
   if (err) {
     console.log(err)
   } else {
@@ -135,8 +124,33 @@ client.post_combination('name_of_combination', data, function(err, resp, body) {
   }
 })
 ```
-
-**Note: using local files and publicly accessible URLs is not supported by this wrapper**
+If you created a combination API name "sentimentanalysistoindex" which takes JSON input and presumed that the name of your input is "jsoninput". And your combination API was defined to parse the jsonContent similar to the format below. You can call the combination API from the code as follows:
+```js
+var jsonContent = '{"arrayinput":[{"content":"Haven OnDemand is awesome."},{"content":"Sentiment Analysis API is very usefule."}]}'
+var params = {}
+params.jsoninput = jsonContent
+client.get_combination('sentimentanalysistoindex', params, false, function(err, resp, body) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log(resp.body)
+  }
+})
+```
+If you created a combination API name "sentimentanalysistoindex" which takes a file input and presumed that the name of your input is "textfile". And your combination API was defined to take also the language configuration. You can call the combination API from the code as follows:
+```js
+var files = [{"textfile":"path/document.txt"}]
+var params = {}
+params.file = files
+params.language = "eng"
+client.post_combination('sentimentanalysistoindex', params, false, function(err, resp, body) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log(resp.body)
+  }
+})
+```
 
 To find out more about combinations and how to create one, see [here](https://dev.havenondemand.com/combination/home).
 
