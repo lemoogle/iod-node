@@ -1,15 +1,17 @@
 {
-  "name": "iod-node",
-  "version": "0.1.1",
-  "description": "Idol OnDemand node client",
+  "name": "havenondemand",
+  "version": "1.4.0",
+  "description": "Official Haven OnDemand Node.js client",
   "main": "index.js",
-  "dependencies": {
-    "needle": "^0.7.10"
-  },
   "devDependencies": {},
   "scripts": {
     "test": "node test.js"
   },
-  "author": "Martin Zerbib",
+  "author": "Haven OnDemand",
+  "contributors": [
+    "Phong Vu <phong.vu@hpe.com>",
+    "Tyler Nappy <tyler.nappy@hpe.com>",
+    "Martin Zerbib"
+  ],
   "license": "MIT"
 }
